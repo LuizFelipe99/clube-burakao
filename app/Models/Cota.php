@@ -17,6 +17,18 @@ class Cota extends Model
     {
         return $this->belongsToMany(Associado::class, 'associado_cota');
     }
+
+       // 👇 pai
+    public function parent()
+    {
+        return $this->belongsTo(Cota::class, 'parent_id');
+    }
+
+    // 👇 filhos (subcotas)
+    public function subcotas()
+    {
+        return $this->hasMany(Cota::class, 'parent_id');
+    }
     
     
 }
