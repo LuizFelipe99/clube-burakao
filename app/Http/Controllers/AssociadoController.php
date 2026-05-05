@@ -1,14 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Cota;
 use Illuminate\Http\Request;
-
-
 use App\Models\Associado;
 
 class AssociadoController extends Controller
 {
-    // get
+    public function cotas()
+    {
+        return $this->belongsToMany(Cota::class, 'associado_cota')
+            ->withPivot(['data_inicio', 'data_fim'])
+            ->withTimestamps();
+    }
+        // get
     public function index()
     {
         return Associado::all();

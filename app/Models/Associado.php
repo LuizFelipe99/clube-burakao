@@ -13,4 +13,11 @@ class Associado extends Model
         'telefone',
         'ativo'
     ];
+
+    public function cotas()
+    {
+        return $this->belongsToMany(Cota::class, 'associado_cota')
+            ->withPivot(['data_inicio', 'data_fim'])
+            ->withTimestamps();
+    }
 }
